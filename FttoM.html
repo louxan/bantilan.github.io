@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feet to Meters Converter</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #F7F7F7; 
+            color: #333;
+            line-height: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            text-align: center;
+        }
+
+        header {
+            background: #FF69B4; 
+            color: #FFFFFF;
+            padding: 2em 1em;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            margin-bottom: 2em;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 0.5em;
+        }
+
+        header p {
+            font-size: 1.2em;
+            font-weight: 300;
+        }
+
+        .conversion-form {
+            background-color: #FFFFFF; 
+            padding: 1em 1.5em;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 350px;
+            margin-top: 20px;
+            max-height: 350px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        .home-btn {
+            background-color: #1E3A8A; 
+            color: white;
+            padding: 0.5em 1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 1em;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .home-btn:hover {
+            background-color: #3F51B5;
+            transform: scale(1.2); 
+        }
+
+        .conversion-form label {
+            font-size: 1.2em;
+            color: #FF69B4; 
+            margin-bottom: 0.5em;
+        }
+
+        .conversion-form input,
+        .conversion-form button {
+            width: 100%;
+            padding: 0.6em;
+            margin: 0.4em 0;
+            border-radius: 5px;
+            border: 2px solid #FF69B4; 
+            transition: transform 0.3s ease;
+        }
+
+        .conversion-form input {
+            background-color: #FFEBEE; 
+        }
+
+        .conversion-form button {
+            background-color: #FF69B4; 
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .conversion-form button:hover {
+            background-color: #F06292; 
+            transform: scale(1.1); /
+        }
+
+        .meters-box {
+            background-color: #FFEBEE; 
+            padding: 1em;
+            border-radius: 8px;
+            border: 2px solid #FF69B4;
+            margin-top: 1em;
+            text-align: center;
+        }
+
+        .meters-box label {
+            font-size: 1.2em;
+            color: #FF69B4; 
+            margin-bottom: 0.5em;
+            display: block;
+        }
+
+        .meters-box span {
+            font-size: 1.9em;
+            color: #FF69B4; 
+            font-weight: bold;
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            header p {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Feet to Meters Converter</h1>
+        <p>Convert feet to meters with ease!</p>
+    </header>
+
+    <div class="conversion-form">
+        <a href="index.html" class="home-btn">Home</a>
+        <label for="feetInput">Enter Feet:</label>
+        <input type="number" id="feetInput" placeholder="Feet" />
+
+        <button onclick="convertToMeters()">Convert</button>
+
+        <div class="meters-box" id="metersBox">
+            <label for="metersResult">Meters:</label>
+            <span id="metersResult">-</span>
+        </div>
+    </div>
+
+    <script>
+        function convertToMeters() {
+            const feet = document.getElementById("feetInput").value;
+            if (feet === "") {
+                document.getElementById("metersResult").innerHTML = "Please enter a value.";
+                return;
+            }
+
+            const meters = feet * 0.3048; 
+            document.getElementById("metersResult").innerHTML = `${meters.toFixed(2)} m`;
+        }
+    </script>
+</body>
+</html>
