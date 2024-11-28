@@ -59,11 +59,30 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            position: relative;
+        }
+
+        .home-btn {
+            background-color: #1E3A8A;
+            color: white;
+            padding: 0.5em 1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 1em;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+
+        .home-btn:hover {
+            background-color: #3F51B5;
         }
 
         .conversion-form label {
             font-size: 1.2em;
-            color: #FF5733;  /* Orange color for the label */
+            color: #FF5733;
             margin-bottom: 0.5em;
         }
 
@@ -78,11 +97,6 @@
 
         .conversion-form input {
             background-color: #FFCDD2;
-        }
-
-        .conversion-form input:focus {
-            border-color: #FF5733;
-            outline: none;
         }
 
         .conversion-form button {
@@ -130,12 +144,14 @@
     </style>
 </head>
 <body>
+
     <header>
         <h1>Fahrenheit to Celsius Converter</h1>
         <p>Convert Fahrenheit to Celsius with ease!</p>
     </header>
 
     <div class="conversion-form">
+        <a href="index.html" class="home-btn">Home</a>
         <label for="fahrenheitInput">Enter Fahrenheit:</label>
         <input type="number" id="fahrenheitInput" placeholder="Fahrenheit" />
 
