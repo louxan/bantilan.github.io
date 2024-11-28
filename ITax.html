@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Income Tax Calculator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #E8F5E9; 
+            color: #333;
+            line-height: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            text-align: center;
+        }
+
+        header {
+            background: #66BB6A;
+            color: #FFFFFF;
+            padding: 2em 1em;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            margin-bottom: 2em;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 0.5em;
+        }
+
+        header p {
+            font-size: 1.2em;
+            font-weight: 300;
+        }
+
+        .tax-form {
+            background-color: #FFFFFF;
+            padding: 1em 1.5em;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 350px;
+            margin-top: 20px;
+            max-height: 400px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        .home-btn {
+            background-color: #1E3A8A;
+            color: white;
+            padding: 0.5em 1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 1em;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .home-btn:hover {
+            background-color: #3F51B5;
+            transform: scale(1.2); 
+        }
+
+        .tax-form label {
+            font-size: 1.2em;
+            color: #66BB6A;
+            margin-bottom: 0.5em;
+        }
+
+        .tax-form input,
+        .tax-form button {
+            width: 100%;
+            padding: 0.6em;
+            margin: 0.4em 0;
+            border-radius: 5px;
+            border: 2px solid #66BB6A;
+            transition: transform 0.3s ease;
+        }
+
+        .tax-form input {
+            background-color: #E8F5E9;
+        }
+
+        .tax-form button {
+            background-color: #66BB6A;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .tax-form button:hover {
+            background-color: #388E3C;
+            transform: scale(1.1); 
+        }
+
+        .tax-result-box {
+            background-color: #C8E6C9;
+            padding: 1em;
+            border-radius: 8px;
+            border: 2px solid #66BB6A;
+            margin-top: 1em;
+            text-align: center;
+        }
+
+        .tax-result-box label {
+            font-size: 1.2em;
+            color: #66BB6A;
+            margin-bottom: 0.5em;
+            display: block;
+        }
+
+        .tax-result-box span {
+            font-size: 1.9em;
+            color: #66BB6A;
+            font-weight: bold;
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            header p {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Income Tax Calculator</h1>
+        <p>Calculate your income tax based on the net taxable income!</p>
+    </header>
+
+    <div class="tax-form">
+        <a href="index.html" class="home-btn">Home</a>
+        <label for="incomeInput">Enter Net Taxable Income (₱):</label>
+        <input type="number" id="incomeInput" placeholder="Net Taxable Income" />
+
+        <button onclick="calculateTax()">Calculate Tax</button>
+
+        <div class="tax-result-box" id="taxResultBox">
+            <label for="taxResult">Income Tax:</label>
+            <span id="taxResult">-</span>
+        </div>
+    </div>
+
+    <script>
+        function calculateTax() {
+            const income = parseFloat(document.getElementById("incomeInput").value);
+            let tax = 0;
+
+            if (isNaN(income) || income <= 0) {
+                document.getElementById("taxResult").innerHTML = "Please enter a valid income.";
+                return;
+            }
+
+            if (income <= 250000) {
+                tax = 0;
+            } else if (income <= 400000) {
+                tax = (income - 250000) * 0.2;
+            } else if (income <= 800000) {
+                tax = 30000 + (income - 400000) * 0.25;
+            } else if (income <= 2000000) {
+                tax = 130000 + (income - 800000) * 0.3;
+            } else if (income <= 8000000) {
+                tax = 490000 + (income - 2000000) * 0.32;
+            } else {
+                tax = 2410000 + (income - 8000000) * 0.35;
+            }
+
+            document.getElementById("taxResult").innerHTML = "₱" + tax.toFixed(2);
+        }
+    </script>
+</body>
+</html>
