@@ -65,7 +65,7 @@
         nav a:hover {
             background: #1E3A8A;
             color: #FFFFFF;
-            transform: scale(1.05);
+            transform: scale(1.1); /* Pop effect */
         }
 
         .dropdown {
@@ -87,14 +87,33 @@
             border: 2px solid #1E3A8A;
             border-radius: 5px;
             margin: 0.2em 0;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.3s ease; /* Added transform for hover effect */
+        }
+
+        /* Hover colors for dropdown items */
+        .dropdown a:nth-child(1):hover {
+            background-color: orange;
+            color: white;
+        }
+
+        .dropdown a:nth-child(2):hover {
+            background-color: deepskyblue;
+            color: white;
+        }
+
+        .dropdown a:nth-child(3):hover {
+            background-color: yellow;
+            color: white;
+        }
+
+        .dropdown a:nth-child(4):hover {
+            background-color: lightpink;
+            color: white;
         }
 
         .dropdown a:hover {
-            background-color: #1E3A8A;
-            color: #FFFFFF;
+            transform: scale(1.1); /* Pop effect */
         }
-
        
         main {
             padding: 2em 1em;
@@ -133,6 +152,19 @@
         footer a:hover {
             text-decoration: underline;
         }
+
+        /* Hover color for Income Tax */
+        a[href="Itax.html"]:hover {
+            background-color: lightgreen; /* Green hover color */
+            color: white; /* Text color changes to white */
+        }
+
+        /* Hover color for Simple Payroll */
+        a[href="SPayroll.html"]:hover {
+            background-color: beige; /* Beige hover color */
+            color: black; /* Text color changes to black */
+        }
+
     </style>
 </head>
 <body>
@@ -148,15 +180,15 @@
             <a href="MtoFt.html">Meters to Feet</a>
             <a href="FttoM.html">Feet to Meters</a>
         </div>
-        <a href="income-tax-calculator.html">Income Tax</a>
+        <a href="Itax.html">Income Tax</a>
 
         <a href="javascript:void(0);" id="factorialLink">Factorial</a>
         <div id="factorialDropdown" class="dropdown">
-            <a href="#">Factorial (While Loop)</a>
-            <a href="#">Sum (Do While Loop)</a>
-            <a href="#">Average (For Loop) of First N Natural Numbers</a>           
+            <a href="Factorial.html">Factorial (While Loop)</a>
+            <a href="Sum.html">Sum (Do While Loop)</a>
+            <a href="Average.html">Average (For Loop) of First N Natural Numbers</a>           
         </div>
-        <a href="simple-payroll.html">Simple Payroll</a>
+        <a href="SPayroll.html">Simple Payroll</a>
     </nav>
     <main>
         
