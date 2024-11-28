@@ -26,7 +26,7 @@
         }
 
         header {
-            background: #FFB700; /* Yellow background */
+            background: #FFB700;
             color: #FFFFFF;
             padding: 2em 1em;
             text-align: center;
@@ -74,15 +74,17 @@
             position: absolute;
             top: 10px;
             left: 10px;
+            transition: transform 0.3s ease;
         }
 
         .home-btn:hover {
             background-color: #3F51B5;
+            transform: scale(1.2); 
         }
 
         .conversion-form label {
             font-size: 1.2em;
-            color: #FFB700; /* Yellow color */
+            color: #FFB700; 
             margin-bottom: 0.5em;
         }
 
@@ -92,26 +94,28 @@
             padding: 0.6em;
             margin: 0.4em 0;
             border-radius: 5px;
-            border: 2px solid #FFB700; /* Yellow border */
+            border: 2px solid #FFB700; 
+            transition: transform 0.3s ease;
         }
 
         .conversion-form input {
-            background-color: #FFF9E6; /* Light yellow background for input */
+            background-color: #FFF9E6; input 
         }
 
         .conversion-form button {
-            background-color: #FFB700; /* Yellow button */
+            background-color: #FFB700;
             color: white;
             border: none;
             cursor: pointer;
         }
 
         .conversion-form button:hover {
-            background-color: #D89000; /* Darker yellow on hover */
+            background-color: #D89000; 
+            transform: scale(1.1); 
         }
 
         .feet-box {
-            background-color: #FFF3E0; /* Light yellow background */
+            background-color: #FFF3E0;
             padding: 1em;
             border-radius: 8px;
             border: 2px solid #FFB700;
@@ -170,7 +174,7 @@
                 return;
             }
 
-            const feet = meters * 3.28084; // Conversion from meters to feet
+            const feet = meters * 3.28084; 
             document.getElementById("feetResult").innerHTML = `${feet.toFixed(2)} ft`;
         }
     </script>
