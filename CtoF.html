@@ -59,11 +59,30 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            position: relative;
+        }
+
+        .home-btn {
+            background-color: #1E3A8A;
+            color: white;
+            padding: 0.5em 1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 1em;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+
+        .home-btn:hover {
+            background-color: #3F51B5;
         }
 
         .conversion-form label {
             font-size: 1.2em;
-            color: #3F51B5; /* Changed to periwinkle */
+            color: #3F51B5;
             margin-bottom: 0.5em;
         }
 
@@ -73,11 +92,11 @@
             padding: 0.6em;
             margin: 0.4em 0;
             border-radius: 5px;
-            border: 2px solid #3F51B5; /* Changed to periwinkle */
+            border: 2px solid #3F51B5;
         }
 
         .conversion-form input {
-            background-color: #E8EAF6; /* Light blue periwinkle for the input box */
+            background-color: #E8EAF6;
         }
 
         .conversion-form button {
@@ -131,6 +150,7 @@
     </header>
 
     <div class="conversion-form">
+        <a href="index.html" class="home-btn">Home</a>
         <label for="celsiusInput">Enter Celsius:</label>
         <input type="number" id="celsiusInput" placeholder="Celsius" />
 
