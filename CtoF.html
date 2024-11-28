@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Celsius to Fahrenheit Converter</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #F7F7F7;
+            color: #333;
+            line-height: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            text-align: center;
+        }
+
+        header {
+            background: #FF5733;
+            color: #FFFFFF;
+            padding: 2em 1em;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            margin-bottom: 2em;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 0.5em;
+        }
+
+        header p {
+            font-size: 1.2em;
+            font-weight: 300;
+        }
+
+        .conversion-form {
+            background-color: #FFFFFF;
+            padding: 1em 1.5em;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 350px;
+            margin-top: 20px;
+            max-height: 350px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .conversion-form label {
+            font-size: 1.2em;
+            color: #1E3A8A;
+            margin-bottom: 0.5em;
+        }
+
+        .conversion-form input,
+        .conversion-form button {
+            width: 100%;
+            padding: 0.6em;
+            margin: 0.4em 0;
+            border-radius: 5px;
+            border: 2px solid #1E3A8A;
+        }
+
+        .conversion-form input {
+            background-color: #E3F2FD;
+        }
+
+        .conversion-form button {
+            background-color: #FF5733;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .conversion-form button:hover {
+            background-color: #C84C28;
+        }
+
+        .fahrenheit-box {
+            background-color: #FFCDD2;
+            padding: 1em;
+            border-radius: 8px;
+            border: 2px solid #FF5733;
+            margin-top: 1em;
+            text-align: center;
+        }
+
+        .fahrenheit-box label {
+            font-size: 1.2em;
+            color: #FF5733;
+            margin-bottom: 0.5em;
+            display: block;
+        }
+
+        .fahrenheit-box span {
+            font-size: 1.9em;
+            color: #FF5733;
+            font-weight: bold;
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            header p {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Celsius to Fahrenheit Converter</h1>
+        <p>Convert Celsius to Fahrenheit with ease!</p>
+    </header>
+
+    <div class="conversion-form">
+        <label for="celsiusInput">Enter Celsius:</label>
+        <input type="number" id="celsiusInput" placeholder="Celsius" />
+
+        <button onclick="convertToFahrenheit()">Convert</button>
+
+        <div class="fahrenheit-box" id="fahrenheitBox">
+            <label for="fahrenheitResult">Fahrenheit:</label>
+            <span id="fahrenheitResult">-</span>
+        </div>
+    </div>
+
+    <script>
+        function convertToFahrenheit() {
+            const celsius = document.getElementById("celsiusInput").value;
+            if (celsius === "") {
+                document.getElementById("fahrenheitResult").innerHTML = "Please enter a value.";
+                return;
+            }
+
+            const fahrenheit = (celsius * 9/5) + 32;
+            document.getElementById("fahrenheitResult").innerHTML = `${fahrenheit.toFixed(2)}°F`;
+        }
+    </script>
+</body>
+</html>
