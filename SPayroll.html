@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Payroll</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #FAF3E0;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 15px;
+        }
+
+        header {
+            background: #D8C3A5; 
+            color: white;
+            text-align: center;
+            width: 100%;
+            padding: 1.5em 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2em;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+        }
+
+        header p {
+            font-size: 1.2em;
+            margin-top: 0.5em;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            width: 100%;
+            max-width: 1200px;
+            justify-content: space-between;
+        }
+
+        .payroll-form {
+            background-color: #FFFFFF;
+            padding: 1.5em;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            max-width: 400px;
+            text-align: left;
+        }
+
+        .payroll-form label {
+            font-size: 1em;
+            color: #6A4E23;
+            margin-bottom: 0.5em;
+            display: block;
+        }
+
+        .payroll-form input,
+        .payroll-form button {
+            width: 100%;
+            padding: 0.8em;
+            margin-bottom: 1em;
+            border-radius: 5px;
+            border: 1px solid #6A4E23;
+        }
+
+        .payroll-form input {
+            background-color: #F0E6D6; 
+        }
+
+        .payroll-form button {
+            background-color: #D8C3A5;
+            color: white;
+            font-size: 1em;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .payroll-form button:hover {
+            transform: scale(1.1); 
+            background-color: #BFA190; 
+        }
+
+        .payroll-form button:nth-of-type(2):hover {
+            background-color: red; 
+        }
+
+        .home-btn {
+            background-color: #6A4E23;
+            color: white;
+            padding: 0.5em 1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 1em;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .home-btn:hover {
+            transform: scale(1.1); 
+            background-color: #8B5D33; 
+        }
+
+        .payroll-table-container {
+            flex: 2;
+            max-width: 800px;
+            overflow-x: auto;
+        }
+
+        .payroll-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .payroll-table th,
+        .payroll-table td {
+            border: 1px solid #6A4E23;
+            padding: 0.8em;
+            text-align: right;
+        }
+
+        .payroll-table th {
+            background-color: #D8C3A5;
+            color: white;
+        }
+
+        .payroll-table td {
+            background-color: #F0E6D6;
+        }
+
+        .payroll-table td:nth-child(1) {
+            text-align: left; 
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .payroll-form,
+            .payroll-table-container {
+                max-width: 100%;
+            }
+        }
+</style>
+
+</head>
+<body>
+
+    <header>
+        <h1>Payroll Program</h1>
+        <p>Manage employee payroll records easily</p>
+    </header>
+
+    <div class="container">
+        <!-- Form Section -->
+        <div class="payroll-form">
+            <a href="index.html" class="home-btn">Home</a>
+
+            <label for="empName">Employee Name:</label>
+            <input type="text" id="empName" placeholder="Enter Employee Name" />
+
+            <label for="daysWorked">Days Worked:</label>
+            <input type="number" id="daysWorked" placeholder="Enter Days Worked" />
+
+            <label for="dailyRate">Daily Rate:</label>
+            <input type="number" id="dailyRate" placeholder="Enter Daily Rate" />
+
+            <label for="deduction">Deduction Amount:</label>
+            <input type="number" id="deduction" placeholder="Enter Deduction Amount" />
+
+            <button onclick="addPayrollRecord()">Add Payroll</button>
+
+            <label for="lineToDelete">Line Number to Delete:</label>
+            <input type="number" id="lineToDelete" placeholder="Enter Line Number" />
+            <button onclick="deletePayrollRecord()">Delete Payroll</button>
+        </div>
+
+        <!-- Table Section -->
+        <div class="payroll-table-container">
+            <table class="payroll-table">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Employee Name</th>
+                        <th>Days Worked</th>
+                        <th>Daily Rate</th>
+                        <th>Gross Pay</th>
+                        <th>Deduction Amount</th>
+                        <th>Net Pay</th>
+                    </tr>
+                </thead>
+                <tbody id="payrollTableBody">
+                 
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        let payrollRecords = [];
+
+        function addPayrollRecord() {
+            const empName = document.getElementById("empName").value;
+            const daysWorked = parseFloat(document.getElementById("daysWorked").value);
+            const dailyRate = parseFloat(document.getElementById("dailyRate").value);
+            const deduction = parseFloat(document.getElementById("deduction").value);
+
+            if (!empName || isNaN(daysWorked) || isNaN(dailyRate) || isNaN(deduction)) {
+                alert("Please fill all fields correctly.");
+                return;
+            }
+
+            const grossPay = daysWorked * dailyRate;
+            const netPay = grossPay - deduction;
+
+            payrollRecords.push({
+                empName,
+                daysWorked,
+                dailyRate,
+                grossPay,
+                deduction,
+                netPay
+            });
+
+            displayPayrollRecords();
+            clearForm();
+        }
+
+        function deletePayrollRecord() {
+            const lineToDelete = parseInt(document.getElementById("lineToDelete").value) - 1;
+
+            if (lineToDelete < 0 || lineToDelete >= payrollRecords.length) {
+                alert("Invalid Line Number.");
+                return;
+            }
+
+            const confirmDelete = confirm("Are you sure you want to delete this row?");
+            if (confirmDelete) {
+                payrollRecords.splice(lineToDelete, 1);
+                displayPayrollRecords();
+            }
+        }
+
+        function displayPayrollRecords() {
+            const tableBody = document.getElementById("payrollTableBody");
+            tableBody.innerHTML = "";
+
+            payrollRecords.forEach((record, index) => {
+                const row = document.createElement("tr");
+
+                row.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${record.empName}</td>
+                    <td>${record.daysWorked}</td>
+                    <td>${record.dailyRate}</td>
+                    <td>${record.grossPay.toFixed(2)}</td>
+                    <td>${record.deduction.toFixed(2)}</td>
+                    <td>${record.netPay.toFixed(2)}</td>
+                `;
+
+                tableBody.appendChild(row);
+            });
+        }
+
+        function clearForm() {
+            document.getElementById("empName").value = "";
+            document.getElementById("daysWorked").value = "";
+            document.getElementById("dailyRate").value = "";
+            document.getElementById("deduction").value = "";
+            document.getElementById("lineToDelete").value = "";
+        }
+    </script>
+
+</body>
+</html>
