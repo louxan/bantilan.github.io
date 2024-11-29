@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Average of First N Numbers</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #FFFAE3; 
+            color: #333;
+            line-height: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            text-align: center;
+        }
+
+        header {
+            background: #FFD700; 
+            color: #6A4E00; 
+            padding: 2em 1em;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            margin-bottom: 2em;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 0.5em;
+        }
+
+        header p {
+            font-size: 1.2em;
+            font-weight: 300;
+        }
+
+        .avg-form {
+            background-color: #FFFFFF;
+            padding: 1em 1.5em;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 350px;
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        .home-btn {
+            background-color: #6A4E00;
+            color: white;
+            padding: 0.5em 1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 1em;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .home-btn:hover {
+            background-color: #8B6A30;
+            transform: scale(1.2);
+        }
+
+        .avg-form label {
+            font-size: 1.2em;
+            color: #FFD700;
+            margin-bottom: 0.5em;
+        }
+
+        .avg-form input,
+        .avg-form button {
+            width: 100%;
+            padding: 0.6em;
+            margin: 0.4em 0;
+            border-radius: 5px;
+            border: 2px solid #FFD700;
+            transition: transform 0.3s ease;
+        }
+
+        .avg-form input {
+            background-color: #FFF9C4; 
+        }
+
+        .avg-form button {
+            background-color: #FFD700;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .avg-form button:hover {
+            background-color: #FFC107;
+            transform: scale(1.1);
+        }
+
+        .result-box {
+            background-color: #FFF9C4;
+            padding: 1em;
+            border-radius: 8px;
+            border: 2px solid #FFD700;
+            margin-top: 1em;
+            text-align: center;
+        }
+
+        .result-box span {
+            font-size: 1.9em;
+            color: #6A4E00; 
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Average of First N Numbers</h1>
+        <p>#4 - Average (For Loop)</p>
+    </header>
+
+    <div class="avg-form">
+        <a href="index.html" class="home-btn">Home</a>
+        
+        <label for="numberInput">Enter a Number:</label>
+        <input type="number" id="numberInput" placeholder="Enter a positive integer" min="0" />
+
+        <button onclick="calculateAverage()">Calculate</button>
+
+        <div class="result-box" id="resultBox">
+            <label>The Average of the First N Numbers:</label>
+            <span id="result">-</span>
+        </div>
+    </div>
+
+    <script>
+        function calculateAverage() {
+            const input = document.getElementById("numberInput").value;
+            const resultElement = document.getElementById("result");
+
+            if (input === "" || isNaN(input) || input < 0) {
+                resultElement.textContent = "Please enter a valid positive integer.";
+                return;
+            }
+
+            let n = parseInt(input);
+            let sum = 0;
+
+            for (let i = 1; i <= n; i++) {
+                sum += i;
+            }
+
+            let average = sum / n;
+            resultElement.textContent = average.toFixed(2);  
+        }
+    </script>
+</body>
+</html>
